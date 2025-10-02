@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appetizers - Recipe Hub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        :root { 
+            --primary: #ff6b35; 
+            --secondary: #004e89; 
+            --accent: #ffd23f; 
+            --dark: #1a1a2e; 
+            --light: #f8f9ff; 
+            --gradient: linear-gradient(45deg, #ff6b35, #f7931e, #ffd23f);
+            --card-bg: #2d2d42;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: var(--dark); 
+            color: var(--light); 
+            line-height: 1.6;
+        }
+        
+        header { 
+            background: var(--gradient); 
+            padding: 3rem 2rem; 
+            text-align: center; 
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        
+        .hero-title { 
+            font-size: 3.5rem; 
+            font-weight: 700; 
+            margin-bottom: 1rem; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3); 
+        }
+        
+        .hero-subtitle { 
+            font-size: 1.3rem; 
+            font-weight: 300; 
+            opacity: 0.9; 
+        }
+        
+        main { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 4rem 2rem; 
+        }
+        
+        .recipes-container { 
+            display: grid; 
+            gap: 4rem; 
+            margin-top: 2rem; 
+        }
+        
+        .recipe-card { 
+            background: var(--card-bg); 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+            transition: transform 0.3s ease; 
+        }
+        
+        .recipe-card:hover { 
+            transform: translateY(-5px); 
+        }
+        
+        .recipe-header { 
+            position: relative; 
+            height: 300px; 
+            overflow: hidden; 
+        }
+        
+        .recipe-header img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+        }
+        
+        .recipe-title-overlay { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            right: 0; 
+            background: linear-gradient(transparent, rgba(0,0,0,0.8)); 
+            padding: 2rem; 
+        }
+        
+        .recipe-title { 
+            font-size: 2.5rem; 
+            font-weight: 700; 
+            color: white; 
+            margin-bottom: 0.5rem; 
+        }
+        
+        .recipe-meta { 
+            color: var(--accent); 
+            font-weight: 500; 
+        }
+        
+        .recipe-content { 
+            padding: 2rem; 
+        }
+        
+        .recipe-section { 
+            margin-bottom: 2rem; 
+        }
+        
+        .section-title { 
+            font-size: 1.5rem; 
+            font-weight: 600; 
+            color: var(--accent); 
+            margin-bottom: 1rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+        }
+        
+        .ingredients-list { 
+            display: grid; 
+            gap: 0.5rem; 
+        }
+        
+        .ingredient { 
+            background: rgba(255, 107, 53, 0.1); 
+            padding: 0.75rem 1rem; 
+            border-radius: 10px; 
+            border-left: 4px solid var(--primary); 
+        }
+        
+        .steps-list { 
+            display: grid; 
+            gap: 1rem; 
+        }
+        
+        .step { 
+            display: flex; 
+            gap: 1rem; 
+            align-items: flex-start; 
+        }
+        
+        .step-number { 
+            background: var(--gradient); 
+            color: var(--dark); 
+            font-weight: 700; 
+            width: 40px; 
+            height: 40px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-shrink: 0; 
+        }
+        
+        .step-content { 
+            padding: 0.5rem 0; 
+        }
+        
+        .back-link { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            background: var(--secondary); 
+            color: white; 
+            text-decoration: none; 
+            padding: 1rem 2rem; 
+            border-radius: 50px; 
+            font-weight: 500; 
+            transition: all 0.3s ease; 
+            margin-bottom: 2rem; 
+        }
+        
+        .back-link:hover { 
+            background: var(--primary); 
+            transform: translateX(-5px); 
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .recipe-title { font-size: 2rem; }
+            main { padding: 2rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="hero-title">Pasta Perfection</h1>
+        <p class="hero-subtitle">Master the art of Italian pasta cooking</p>
+    </header>
+
+    <main>
+        <a href="index.html" class="back-link">
+            ← Back to Recipe Hub
+        </a>
+
+        <div class="recipes-container">
+            <!-- Recipe 1: Classic Spaghetti Carbonara -->
+            <article class="recipe-card">
+                <div class="recipe-header">
+                    <img src="./spaggetti.jpg" alt="Creamy spaghetti carbonara with bacon">
+                    <div class="recipe-title-overlay">
+                        <h2 class="recipe-title">Spaghetti Carbonara</h2>
+                        <p class="recipe-meta">Prep: 10 min • Cook: 15 min • Serves: 4</p>
+                    </div>
+                </div>
+                <div class="recipe-content">
+                    <section class="recipe-section">
+                        <h3 class="section-title">🥄 Ingredients</h3>
+                        <div class="ingredients-list">
+                            <div class="ingredient">1 lb spaghetti pasta</div>
+                            <div class="ingredient">6 large egg yolks</div>
+                            <div class="ingredient">1 whole egg</div>
+                            <div class="ingredient">1 cup freshly grated Pecorino Romano cheese</div>
+                            <div class="ingredient">8 oz pancetta or guanciale, diced</div>
+                            <div class="ingredient">4 cloves garlic, minced</div>
+                            <div class="ingredient">1/2 cup dry white wine</div>
+                            <div class="ingredient">Fresh black pepper to taste</div>
+                            <div class="ingredient">Salt for pasta water</div>
+                            <div class="ingredient">Fresh parsley for garnish</div>
+                        </div>
+                    </section>
+
+                    <section class="recipe-section">
+                        <h3 class="section-title">👨‍🍳 Instructions</h3>
+                        <div class="steps-list">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">Bring a large pot of salted water to boil. Cook spaghetti according to package directions until al dente.</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">In a bowl, whisk together egg yolks, whole egg, and grated Pecorino Romano cheese. Add plenty of black pepper.</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">Cook pancetta in a large skillet over medium heat until crispy. Add garlic and cook for 1 minute.</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">Add white wine to deglaze the pan, scraping up browned bits. Let wine reduce by half.</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">5</div>
+                                <div class="step-content">Reserve 1 cup pasta water before draining. Add hot pasta to the pancetta pan and toss.</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">6</div>
+                                <div class="step-content">Remove from heat. Quickly add egg mixture while tossing pasta. Add pasta water gradually until creamy.</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">7</div>
+                                <div class="step-content">Serve immediately with extra cheese, black pepper, and fresh parsley. Enjoy hot!</div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </article>
+
+            <!-- Recipe 2: Creamy Penne Alfredo -->
+            <article class="recipe-card">
+                <div class="recipe-header">
+                    <img src="./pasta.jpg" alt="Creamy penne alfredo with herbs">
+                    <div class="recipe-title-overlay">
+                        <h2 class="recipe-title">Penne Alfredo</h2>
+                        <p class="recipe-meta">Prep: 5 min • Cook: 20 min • Serves: 4</p>
+                    </div>
+                </div>
+                <div class="recipe-content">
+                    <section class="recipe-section">
+                        <h3 class="section-title">🥄 Ingredients</h3>
+                        <div class="ingredients-list">
+                            <div class="ingredient">1 lb penne pasta</div>
+                            <div class="ingredient">1/2 cup butter</div>
+                            <div class="ingredient">1 cup heavy cream</div>
+                            <div class="ingredient">1 1/2 cups freshly grated Parmesan cheese</div>
+                            <div class="ingredient">4 cloves garlic, minced</div>
+                            <div class="ingredient">1/2 tsp nutmeg (optional)</div>
+                            <div class="ingredient">Salt and white pepper to taste</div>
+                            <div class="ingredient">1/4 cup fresh parsley, chopped</div>
+                            <div class="ingredient">2 tbsp olive oil</div>
+                            <div class="ingredient">Extra Parmesan for serving</div>
+                        </div>
+                    </section>
+
+                    <section class="recipe-section">
+                        <h3 class="section-title">👨‍🍳 Instructions</h3>
+                        <div class="steps-list">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">Cook penne pasta in salted boiling water according to package directions until al dente. Reserve 1 cup pasta water.</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">In a large skillet, heat olive oil and butter over medium heat until butter melts.</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">Add minced garlic and sauté for 1-2 minutes until fragrant, being careful not to brown.</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">Pour in heavy cream and bring to a gentle simmer. Add nutmeg if using.</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">5</div>
+                                <div class="step-content">Gradually whisk in Parmesan cheese until melted and sauce is smooth. Season with salt and pepper.</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">6</div>
+                                <div class="step-content">Add drained pasta to the sauce and toss gently. Add pasta water if needed for consistency.</div>
+                            </div>
+                            <div class="step">
+                                <div class="step-number">7</div>
+                                <div class="step-content">Remove from heat, add fresh parsley, and serve immediately with extra Parmesan cheese.</div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </article>
+        </div>
+    </main>
+</body>
+</html>
